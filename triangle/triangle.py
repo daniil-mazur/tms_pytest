@@ -62,7 +62,7 @@ class Triangle(object):
     def is_right_angled(self) -> bool:
         return self.a ** 2 + self.b ** 2 == self.c ** 2
 
-    def is_right_triangle2(self) -> bool:
+    def is_right_triangle(self) -> bool:
         return self.a == self.b == self.c
 
     def two_sides_eq(self) -> bool:
