@@ -3,12 +3,13 @@ import math
 
 class Triangle(object):
     def __init__(self, a, b, c):
-        if self._check_if_exist(a, b, c):
+        if Triangle.check_if_exist(a, b, c):
             self.a = a
             self.b = b
             self.c = c
 
-    def _check_if_exist(self, a, b, c):
+    @staticmethod
+    def check_if_exist(a, b, c):
         if a + b > c and a + c > b and b + c > a:
             return True
         raise ValueError('Треугольник не существует')

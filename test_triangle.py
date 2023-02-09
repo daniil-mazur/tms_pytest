@@ -3,6 +3,9 @@ from triangle.triangle import Triangle
 
 class TestTrianglePtest:
 
+    def test_triangle_exist(self):
+        assert Triangle.check_if_exist(7, 8, 100)
+
     def test_triangle_eq(self):
         first = Triangle(7, 8, 9)
         second = Triangle(9, 8, 7)
