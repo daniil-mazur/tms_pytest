@@ -10,7 +10,7 @@ class TestTrianglePtest:
     def test_triangle_lt(self):
         first = Triangle(7, 8, 9)
         second = Triangle(1, 1, 1)
-        assert first < second
+        assert first > second
 
     def test_triangle_right(self, right_triangle):
         assert right_triangle.is_right_triangle()

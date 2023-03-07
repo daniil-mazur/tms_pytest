@@ -15,7 +15,6 @@ from retrying import retry
 
 import math
 
-
 class BasePage:
     def __init__(self, driver: webdriver.Chrome):
         self.webdriver = driver
@@ -47,7 +46,7 @@ class BasePage:
         return element.text
 
     def switch_to_iframe(self, iframe_locator, timer=10):
-        WebDriverWait(self, timer).until(EC.frame_to_be_available_and_switch_to_it(iframe_locator))
+        WebDriverWait(self.webdriver, timer).until(EC.frame_to_be_available_and_switch_to_it(iframe_locator))
 
     def switch_to_default_context(self):
         self.webdriver.switch_to.default_content()

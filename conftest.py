@@ -6,6 +6,7 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.options import Options
 
 
 # @pytest.fixture(scope='class', autouse=True)
@@ -32,5 +33,19 @@ def rb_triangle(request):
 @pytest.fixture()
 def chromedriver():
     chrome = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+    yield chrome
+    chrome.close()
+
+@pytest.fixture()
+def browser():
+    chrome = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+    yield chrome
+    chrome.close()
+
+@pytest.fixture()
+def chromedriver_headless():
+    chromeopt = Options()
+    chromeopt.add_argument("--headless")
+    chrome = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chromeopt)
     yield chrome
     chrome.close()

@@ -11,7 +11,6 @@ class TestTrianglePtest:
         second = Triangle(9, 8, 7)
         assert first == second
 
-    @pytest.mark.my_mark
     def test_triangle_lt(self):
         first = Triangle(7, 8, 9)
         second = Triangle(9, 10, 11)

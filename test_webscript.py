@@ -9,6 +9,7 @@ from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.action_chains import ActionChains
 import math
 
 
@@ -126,6 +127,12 @@ def test_alert_simple(chromedriver):
     chrome.get(url)
     WebDriverWait(chrome, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR,
                                                                 '[type="submit"]'))).click()
+    # webel = chrome.find_element(By.CSS_SELECTOR,'[type="submit"]')
+
+    # chrome.execute_script("arguments[0].click();", webel)
+    # actions = ActionChains(chromedriver)
+    # actions.context_click(on_element=webel)
+    # actions.perform()
     alert_message = chrome.switch_to.alert
     alert_message.accept()
     alert_message.accept()
@@ -157,5 +164,21 @@ def test_iframe_and_alert(chromedriver):
     prompt.send_keys('Daniil')
     prompt.accept()
 
-    # chrome.switch_to.default_content()
-    print('i')
+# def test_actions(chromedriver):
+#     driver = chromedriver
+#     # get geeksforgeeks.org
+#     driver.get("https://www.geeksforgeeks.org/")
+#
+#     # get element
+#     element = driver.find_element(By.PARTIAL_LINK_TEXT, "Courses")
+#
+#     # create action chain object
+#     action = ActionChains(driver)
+#
+#     # click the item
+#     action.click(on_element=element)
+#
+#     # perform the operation
+#     action.perform()
+#
+#     print('lol')
