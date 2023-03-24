@@ -8,6 +8,8 @@ from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 
+TOKEN = '3e738ded8190faa0d6082cedd4dbf5d8c6fb8d52b109712eaaf36880a4750e22'
+
 
 # @pytest.fixture(scope='class', autouse=True)
 # def printer():
