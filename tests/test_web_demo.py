@@ -1,4 +1,5 @@
-from page_objects.robot_page import RobotPage
+import allure
+
 from page_objects.potter_page import PotterPage
 
 '''
@@ -13,14 +14,19 @@ from page_objects.potter_page import PotterPage
 '''
 
 
+@allure.feature('Feature 1')
+@allure.title('Demo test for Web alerts')
 def test_iframe_and_alert(chromedriver_docker):
     # arrange
     name = 'Daniil'
-    potter_page = PotterPage(chromedriver_docker)
-    potter_page.open()
+    with allure.step('Open Potter Page'):
+        potter_page = PotterPage(chromedriver_docker)
+        potter_page.open()
     # actions
-
-    potter_page.click_try_it()
-    potter_page.fill_and_accept_alert(name)
+    with allure.step('Potter page: click button'):
+        potter_page.click_try_it()
+    with allure.step('Potter page: click alerts'):
+        potter_page.fill_and_accept_alert(name)
     # assert
-    potter_page.verifier.verify_message(name)
+    with allure.step('Potter page: verify message'):
+        potter_page.verifier.verify_message(name)

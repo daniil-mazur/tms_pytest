@@ -4,3 +4,4 @@ webdriver_manager
 requests
 retrying
 pytest-bdd
+allure-pytest

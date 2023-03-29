@@ -1,8 +1,8 @@
-FROM python:3.10
-
+FROM jenkins/jenkins:lts
 USER root
 RUN mkdir /my_app
 WORKDIR /my_app
+
 # Adding trusting keys to apt for repositories
 RUN apt-get -y update && apt-get install -y wget
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
@@ -19,13 +19,21 @@ RUN wget -O /tmp/chromedriver.zip http://chromedriver.storage.googleapis.com/`cu
 # Unzip the Chrome Driver into /usr/local/bin directory
 RUN unzip /tmp/chromedriver.zip chromedriver -d /usr/local/bin/
 # set display port to avoid crash
+
 ENV DISPLAY=:99
+# Download and install allure
+RUN curl -o allure-2.7.0.tgz -Ls https://github.com/allure-framework/allure2/releases/download/2.7.0/allure-2.7.0.tgz
+RUN tar -zxvf allure-2.7.0.tgz -C /opt/
+RUN ln -s /opt/allure-2.7.0/bin/allure /usr/bin/allure
+RUN allure --version
+COPY requirements.txt /my_app
+RUN pwd
+RUN ls -la
+RUN apt-get update
+RUN apt-get install -y --force-yes python3-pip
 
 # upgrade pip
-RUN pip install --upgrade pip
+RUN pip3 install --upgrade pip
 
-COPY . /usr/src/test_frame/
-RUN pip install -r /usr/src/test_frame/requirements.txt
-RUN mkdir /tmp/logs
-RUN ls -R /usr/src/test_frame/
-CMD ["pytest", "/usr/src/test_frame/tests_for_docker"]
+COPY . /my_app
+RUN pip3 install -r /my_app/requirements.txt

@@ -1,3 +1,4 @@
+import allure
 import requests
 import random
 from conftest import  TOKEN
@@ -37,6 +38,7 @@ class UserApi():
                                 headers=self.headers)
         return response.json(), response.status_code
 
+    @allure.step('Get user API')
     def get_user(self, user_id):
         response = requests.get(url=f'{self.baseurl}/public/v2/users/{user_id}',
                                 headers=self.headers)
