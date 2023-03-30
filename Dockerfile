@@ -23,10 +23,10 @@ RUN apt-get install -yqq unzip
 
 ENV DISPLAY=:99
 # Download and install allure
-#RUN curl -o allure-2.7.0.tgz -Ls https://github.com/allure-framework/allure2/releases/download/2.7.0/allure-2.7.0.tgz
-#RUN tar -zxvf allure-2.7.0.tgz -C /opt/
-#RUN ln -s /opt/allure-2.7.0/bin/allure /usr/bin/allure
-#RUN allure --version
+RUN curl -o allure-2.7.0.tgz -Ls https://github.com/allure-framework/allure2/releases/download/2.7.0/allure-2.7.0.tgz
+RUN tar -zxvf allure-2.7.0.tgz -C /opt/
+RUN ln -s /opt/allure-2.7.0/bin/allure /usr/bin/allure
+RUN allure --version
 COPY requirements.txt /my_app
 RUN pwd
 RUN ls -la
